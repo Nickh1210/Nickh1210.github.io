@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nisarg Hajare — Data & AI Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #f7f6f3;
+    --surface: #ffffff;
+    --border: #e8e6e0;
+    --text: #1a1917;
+    --muted: #6b6862;
+    --hint: #9e9b96;
+    --accent: #2d5be3;
+    --accent-light: #eef1fd;
+    --accent-muted: #8da4f0;
+    --teal: #0f7b6c;
+    --teal-light: #e4f5f2;
+    --purple: #5b3fb5;
+    --purple-light: #f0ecfc;
+    --amber: #b85c00;
+    --amber-light: #fef3e2;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 780px; margin: 0 auto; padding: 0 2rem; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,246,243,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.85rem 0;
+  }
+  nav .inner { max-width: 780px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+  nav .logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--text); text-decoration: none; }
+  nav ul { list-style: none; display: flex; gap: 1.5rem; }
+  nav ul li a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  nav ul li a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero { padding: 5rem 0 3.5rem; }
+  .hero-tag { display: inline-block; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); background: var(--accent-light); padding: 4px 12px; border-radius: 20px; margin-bottom: 1.25rem; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: 48px; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.5px; }
+  .hero p { font-size: 16px; color: var(--muted); max-width: 520px; line-height: 1.75; margin-bottom: 2rem; }
+  .hero-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; padding: 9px 18px; border-radius: 8px; text-decoration: none; transition: all 0.2s; }
+  .btn-primary { background: var(--text); color: #fff; }
+  .btn-primary:hover { background: #333; }
+  .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+  .btn-secondary:hover { background: var(--border); }
+
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin: 3rem 0; }
+  .stat { background: var(--surface); padding: 1.25rem 1rem; text-align: center; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--text); }
+  .stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* SECTIONS */
+  section { padding: 3.5rem 0; border-top: 1px solid var(--border); }
+  .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--hint); margin-bottom: 2rem; }
+
+  /* PROJECTS */
+  .projects { display: flex; flex-direction: column; gap: 1.25rem; }
+  .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; transition: border-color 0.2s; }
+  .project-card:hover { border-color: #c0bdb6; }
+  .proj-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+  .proj-title { font-size: 16px; font-weight: 500; }
+  .proj-unit { font-size: 12px; color: var(--muted); background: var(--bg); border: 1px solid var(--border); padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+  .proj-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 0.85rem; }
+  .challenge-box { background: var(--amber-light); border-left: 3px solid var(--amber); padding: 0.6rem 0.85rem; border-radius: 0 6px 6px 0; font-size: 13px; color: var(--amber); margin-bottom: 0.85rem; line-height: 1.5; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 20px; }
+  .tag-blue { background: var(--accent-light); color: var(--accent); }
+  .tag-teal { background: var(--teal-light); color: var(--teal); }
+  .tag-purple { background: var(--purple-light); color: var(--purple); }
+  .tag-gray { background: #f1efe8; color: #5f5e5a; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1rem; }
+  .skill-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.25rem; }
+  .skill-title { font-size: 12px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.6rem; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  /* EDUCATION */
+  .edu-cards { display: flex; flex-direction: column; gap: 1rem; }
+  .edu-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
+  .edu-degree { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+  .edu-school { font-size: 13px; color: var(--muted); }
+  .edu-badge { font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 20px; }
+
+  /* CONTACT */
+  .contact-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; }
+  .contact-card p { font-size: 14px; color: var(--muted); margin-bottom: 1.25rem; }
+  .contact-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+  footer { padding: 2rem 0; border-top: 1px solid var(--border); text-align: center; font-size: 12px; color: var(--hint); }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 34px; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    nav ul { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a class="logo" href="#">Nisarg Hajare</a>
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero">
+    
+    <h1>Data & AI<br>Portfolio</h1>
+    <p>MBA graduate specialising in AI for Business from Deakin University. I work at the intersection of data analysis, business intelligence, and machine learning to turn complex data into actionable insights.</p>
+    <div class="hero-links">
+      <a class="btn btn-primary" href="https://github.com/Nickh1210" target="_blank">GitHub ↗</a>
+      <a class="btn btn-secondary" href="https://www.linkedin.com/in/nisarghajare9860/" target="_blank">Get in touch</a>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">5</div><div class="stat-label">Projects</div></div>
+    <div class="stat"><div class="stat-num">6+</div><div class="stat-label">Tools</div></div>
+    <div class="stat"><div class="stat-num">0.916</div><div class="stat-label">Best R²</div></div>
+    <div class="stat"><div class="stat-num">Distinction</div><div class="stat-label">MBA grade</div></div>
+  </div>
+
+  <section id="projects">
+    <div class="section-label">Projects</div>
+    <div class="projects">
+
+      <div class="project-card">
+        <div class="proj-header">
+          <div class="proj-title">Employee Survey — AI Workforce Readiness</div>
+          <div class="proj-unit">MIS770 · Deakin MBA</div>
+        </div>
+        <div class="proj-desc">Analysed survey data from 400 employees at a mid-sized Australian firm to uncover salary patterns, AI preparedness levels, and overall workforce sentiment toward AI integration.</div>
+        <div class="challenge-box">Challenge: Handling skewed distributions and selecting the right significance tests across multiple independent hypotheses simultaneously.</div>
+        <div class="tags">
+          <span class="tag tag-blue">Excel</span>
+          <span class="tag tag-gray">Descriptive statistics</span>
+          <span class="tag tag-teal">Hypothesis testing</span>
+          <span class="tag tag-gray">Confidence intervals</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="proj-header">
+          <div class="proj-title">Phishing Campaign BI Dashboard</div>
+          <div class="proj-unit">MIS781 · Deakin MBA</div>
+        </div>
+        <div class="proj-desc">Designed and built 3 Power BI dashboards to monitor simulated phishing campaigns — tailored views for campaign managers, HR, and department heads — using a fully custom 400+ record dataset.</div>
+        <div class="challenge-box">Challenge: Designing a realistic dataset from scratch and structuring multiple dashboards that serve different stakeholder needs without data redundancy.</div>
+        <div class="tags">
+          <span class="tag tag-blue">Power BI</span>
+          <span class="tag tag-teal">Excel</span>
+          <span class="tag tag-gray">Data modelling</span>
+          <span class="tag tag-gray">Dashboard design</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="proj-header">
+          <div class="proj-title">Game Ratings & Student Risk — ML Analysis</div>
+          <div class="proj-unit">MIS710 · Deakin MBA</div>
+        </div>
+        <div class="proj-desc">Built multiple linear regression models to predict game ratings across 24,813 records, and a classification model to identify Year 3 students at risk of writing difficulties based on literacy and socioeconomic indicators.</div>
+        <div class="challenge-box">Challenge: Managing high-dimensional data, applying one-hot encoding correctly, and balancing model complexity against interpretability for a business audience.</div>
+        <div class="tags">
+          <span class="tag tag-purple">Python</span>
+          <span class="tag tag-blue">Jupyter Notebook</span>
+          <span class="tag tag-teal">Scikit-learn</span>
+          <span class="tag tag-gray">Linear regression</span>
+          <span class="tag tag-gray">EDA</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="proj-header">
+          <div class="proj-title">EV Ownership & Predictive Business Models</div>
+          <div class="proj-unit">MIS771 · Deakin MBA</div>
+        </div>
+        <div class="proj-desc">Analysed Australian EV ownership patterns using hypothesis testing and experimental design. Then applied regression and time series forecasting across five real-world business scenarios including supermarket sales, customer behaviour, and staff retention.</div>
+        <div class="challenge-box">Challenge: Choosing the correct statistical test for each scenario and correctly interpreting interaction effects in two-way ANOVA experimental designs.</div>
+        <div class="tags">
+          <span class="tag tag-blue">Excel</span>
+          <span class="tag tag-gray">ANOVA</span>
+          <span class="tag tag-teal">Logistic regression</span>
+          <span class="tag tag-purple">Time series forecasting</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="proj-header">
+          <div class="proj-title">Airbnb Madrid — Sentiment & Predictive Analytics</div>
+          <div class="proj-unit">MIS772 · Deakin MBA</div>
+        </div>
+        <div class="proj-desc">Text-mined Airbnb host descriptions and guest reviews using NLP techniques, then built a linear regression model (M5 Prime algorithm) to predict review scores. Final model achieved R² of 0.916 with RMSE of 0.807.</div>
+        <div class="challenge-box">Challenge: Pre-processing noisy unstructured text data, detecting and removing outliers using k-NN anomaly scores, and managing multicollinearity across correlated review attributes.</div>
+        <div class="tags">
+          <span class="tag tag-blue">RapidMiner</span>
+          <span class="tag tag-teal">Sentiment analysis</span>
+          <span class="tag tag-purple">Linear regression</span>
+          <span class="tag tag-gray">k-NN anomaly detection</span>
+          <span class="tag tag-gray">NLP</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-label">Tools & Skills</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-title">Analytics tools</div>
+        <div class="skill-tags">
+          <span class="tag tag-blue">Excel</span>
+          <span class="tag tag-blue">Power BI</span>
+          <span class="tag tag-blue">RapidMiner</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-title">Programming</div>
+        <div class="skill-tags">
+          <span class="tag tag-purple">Python</span>
+          <span class="tag tag-purple">Pandas</span>
+          <span class="tag tag-purple">Scikit-learn</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-title">Statistics</div>
+        <div class="skill-tags">
+          <span class="tag tag-teal">Regression</span>
+          <span class="tag tag-teal">ANOVA</span>
+          <span class="tag tag-teal">Hypothesis testing</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-title">Machine learning</div>
+        <div class="skill-tags">
+          <span class="tag tag-gray">Classification</span>
+          <span class="tag tag-gray">NLP</span>
+          <span class="tag tag-gray">Anomaly detection</span>
+          <span class="tag tag-gray">Time series</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-label">Education</div>
+    <div class="edu-cards">
+      <div class="edu-card">
+        <div>
+          <div class="edu-degree">MBA — AI for Business</div>
+          <div class="edu-school">Deakin University · Melbourne, Australia</div>
+        </div>
+        <div>
+          <span class="edu-badge tag-teal">Distinction</span>
+          <div style="font-size: 12px; color: var(--hint); margin-top: 6px; text-align: right;">Completed Oct 2025</div>
+        </div>
+      </div>
+      <div class="edu-card">
+        <div>
+          <div class="edu-degree">BCom — Commerce</div>
+          <div class="edu-school">BMCC Pune · India</div>
+        </div>
+        <span class="edu-badge tag-blue">Strong CGPA</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-label">Contact</div>
+    <div class="contact-card">
+      <p>Based in Melbourne, AU and open to data analyst, BI analyst, and AI-related roles. Feel free to reach out or explore my work on GitHub.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="https://github.com/Nickh1210" target="_blank">GitHub ↗</a>
+        <a class="btn btn-secondary" href="https://www.linkedin.com/in/nisarghajare9860/" target="_blank">LinkedIn ↗</a>
+        <a class="btn btn-secondary" href="https://linkedin.com/in/nisarg-hajare" target="_blank">LinkedIn ↗</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">Built by Nisarg Hajare · Melbourne, AU</div>
+</footer>
+
+</body>
+</html>
